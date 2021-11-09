@@ -22,7 +22,6 @@ const Login = () => {
         newLoginData[field] = value;
         setLoginData(newLoginData);
     }
-    console.log(loginData);
 
     const handleLoginSubmit = (e) => {
         loginUser(loginData.email, loginData.password, location, history)
