@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const Appointments = ({ date }) => {
     const { user, token } = useAuth();
@@ -30,7 +32,7 @@ const Appointments = ({ date }) => {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ backgroundColor: 'gold' }} aria-label="Appointments table">
+            <Table sx={{ backgroundColor: '#ffffed' }} aria-label="Appointments table">
                 <TableHead>
                     <TableRow>
                         <TableCell>PatientName</TableCell>
@@ -51,7 +53,9 @@ const Appointments = ({ date }) => {
                             </TableCell>
                             <TableCell align="left">{appointment.serviceName}</TableCell>
                             <TableCell align="left">{appointment.time}</TableCell>
-                            <TableCell align="right">{appointment.action}</TableCell>
+                            <TableCell align="right">{appointment.payment ? 'Paid' :
+                                <Link to={`/dashboard/payment/${appointment._id}`}><Button variant="text">Pay</Button></Link>
+                            }</TableCell>
 
                         </TableRow>
                     ))}

@@ -7,7 +7,7 @@ import BookingModal from '../BookingModal/BookingModal';
 
 
 const Booking = ({ booking, date, setBookingSuccess }) => {
-    const { name, time, space } = booking;
+    const { name, time, space, price } = booking;
 
     const [showBookingModal, setShowBookingModal] = React.useState(false);
     const handleModalOpen = () => setShowBookingModal(true);
@@ -21,6 +21,9 @@ const Booking = ({ booking, date, setBookingSuccess }) => {
                 <Paper elevation={2} sx={{ py: 5 }}>
                     <Typography sx={{ color: 'info.main', fontWeight: 600 }} variant="h5" gutterBottom component="div">
                         {name}
+                    </Typography>
+                    <Typography sx={{ color: 'info.main', fontWeight: 700 }} variant="h5" gutterBottom component="div">
+                        $  {price}
                     </Typography>
                     <Typography variant="subtitle1" gutterBottom component="div">
                         {time}

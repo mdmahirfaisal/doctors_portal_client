@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 
 
 const BookingModal = ({ showBookingModal, handleModalClose, booking, date, setBookingSuccess }) => {
-    const { name, time, } = booking;
+    const { name, time, price } = booking;
     const { user } = useAuth();
     const initialInfo = { patientName: user.displayName, email: user.email, phone: '' };
     const [bookingInfo, setBookingInfo] = useState(initialInfo);
@@ -23,8 +23,7 @@ const BookingModal = ({ showBookingModal, handleModalClose, booking, date, setBo
         const newInfo = { ...bookingInfo };
         newInfo[field] = value;
         setBookingInfo(newInfo)
-
-    }
+    };
 
 
 
@@ -49,6 +48,7 @@ const BookingModal = ({ showBookingModal, handleModalClose, booking, date, setBo
         // collect data 
         const appointment = {
             ...bookingInfo,
+            price,
             time,
             serviceName: name,
             date: date.toLocaleDateString()
@@ -76,7 +76,6 @@ const BookingModal = ({ showBookingModal, handleModalClose, booking, date, setBo
         handleModalClose();
         e.preventDefault();
     };
-
 
     return (
         <Modal

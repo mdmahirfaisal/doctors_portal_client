@@ -4,7 +4,6 @@ import { Grid } from '@mui/material';
 import login from '../../../images/login.png';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
-import { ToastContainer, toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -30,7 +29,7 @@ const Login = () => {
 
     //// Login with google 
     const handleGoogleLogin = () => {
-        signInWithGoogle(location, history, toast);
+        signInWithGoogle(location, history);
     };
 
 
@@ -59,17 +58,6 @@ const Login = () => {
                     </form>}
                     <p>----------------------------</p>
                     <Button onClick={handleGoogleLogin} sx={{ width: '50%', m: 1 }} variant="contained">GOOGLE SIGN IN </Button>
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={4000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
 
                 </Grid>
 

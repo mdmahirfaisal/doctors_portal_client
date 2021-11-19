@@ -108,9 +108,11 @@ const useFirebase = () => {
     }, [auth]);
 
     useEffect(() => {
+        // setLoading(true)
         fetch(`https://polar-oasis-74265.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
+        // setLoading(false)
     }, [user.email]);
 
 

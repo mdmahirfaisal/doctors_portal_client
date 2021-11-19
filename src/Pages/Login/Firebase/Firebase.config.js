@@ -7,4 +7,14 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
 };
 
+
+// const firebaseConfig = {
+//     apiKey: "AIzaSyAFrhW7s5xCLrwMiN-zGligym-8iJdapZQ",
+//     authDomain: "new-doctors-portal.firebaseapp.com",
+//     projectId: "new-doctors-portal",
+//     storageBucket: "new-doctors-portal.appspot.com",
+//     messagingSenderId: "1026022056053",
+//     appId: "1:1026022056053:web:9fe9cda740613cc1b9183c"
+// };
+
 export default firebaseConfig;
