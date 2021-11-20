@@ -2,7 +2,7 @@ import { Container, TextField, Typography, Button, Alert, CircularProgress } fro
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import login from '../../../images/login.png';
-import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 
@@ -10,7 +10,7 @@ const Login = () => {
     const [loginData, setLoginData] = useState({});
     const { user, loginUser, authError, loading, signInWithGoogle } = useAuth();
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
 
 
     const handleOnChange = (e) => {
@@ -23,13 +23,13 @@ const Login = () => {
     }
 
     const handleLoginSubmit = (e) => {
-        loginUser(loginData.email, loginData.password, location, history)
+        loginUser(loginData.email, loginData.password, location, navigate)
         e.preventDefault();
     };
 
     //// Login with google 
     const handleGoogleLogin = () => {
-        signInWithGoogle(location, history);
+        signInWithGoogle(location, navigate);
     };
 
 

@@ -17,18 +17,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button, } from '@mui/material';
 import {
-    Switch,
-    Route,
-    Link,
-    useRouteMatch
+    Outlet,
+    Link
 } from "react-router-dom";
-import DashboardHome from '../DashboardHome/DashboardHome';
-import MakeAdmin from '../MakeAddmin/MakeAdmin';
-import AddDoctor from '../AddDoctor/AddDoctor';
 import useAuth from '../../../hooks/useAuth';
-import AdminRoute from '../../Login/AdminRoute/AdminRoute';
-import Payment from '../Payment/Payment';
-
 
 
 const drawerWidth = 200;
@@ -39,7 +31,6 @@ function Dashboard(props) {
 
     const { admin } = useAuth();
 
-    let { path, url } = useRouteMatch();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -49,10 +40,10 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <Link to="/appointment" style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Appointment</Button></Link>
-            <Link to={`${url}`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Dashboard</Button></Link>
+            <Link to="/dashboard" style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Dashboard</Button></Link>
             {admin && <Box>
-                <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Make Admin</Button></Link>
-                <Link to={`${url}/addDoctor`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Add Doctor</Button></Link>
+                <Link to={`/dashboard/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Make Admin</Button></Link>
+                <Link to={`/dashboard/addDoctor`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Add Doctor</Button></Link>
             </Box>}
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -130,23 +121,7 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 2, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Switch>
-                    <Route exact path={path}>
-                        <DashboardHome></DashboardHome>
-                    </Route>
-
-                    <Route path={`${path}/payment/:appointmentId`}>
-                        <Payment></Payment>
-                    </Route>
-
-                    <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
-                    </AdminRoute>
-
-                    <AdminRoute path={`${path}/addDoctor`}>
-                        <AddDoctor></AddDoctor>
-                    </AdminRoute>
-                </Switch>
+                <Outlet></Outlet>
 
             </Box>
         </Box>
